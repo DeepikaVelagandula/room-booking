@@ -1,0 +1,16 @@
+{
+    "rooms":[
+        {
+            "id": "room_0",
+            "name": "Tulip",
+            "capacity": 8,
+            "video": true
+        },
+        {
+            "id": "room_1",
+            "name": "Orchids",
+            "capacity": 4,
+            "video": true
+        }
+    ]
+}

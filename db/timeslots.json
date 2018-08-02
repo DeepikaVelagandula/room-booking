@@ -1,0 +1,92 @@
+{
+  "slots": [
+    {
+      "id": "slot_8.5",
+      "time": 8.5
+    },
+    {
+      "id": "slot_9",
+      "time": 9
+    },
+    {
+      "id": "slot_9.5",
+      "time": 9.5
+    },
+    {
+      "id": "slot_10",
+      "time": 10
+    },
+    {
+      "id": "slot_10.5",
+      "time": 10.5
+    },
+    {
+      "id": "slot_11",
+      "time": 11
+    },
+    {
+      "id": "slot_11.5",
+      "time": 11.5
+    },
+    {
+      "id": "slot_12",
+      "time": 12
+    },
+    {
+      "id": "slot_12.5",
+      "time": 12.5
+    },
+    {
+      "id": "slot_13",
+      "time": 13
+    },
+    {
+      "id": "slot_13.5",
+      "time": 13.5
+    },
+    {
+      "id": "slot_14",
+      "time": 14
+    },
+    {
+      "id": "slot_14.5",
+      "time": 14.5
+    },
+    {
+      "id": "slot_15",
+      "time": 15
+    },
+    {
+      "id": "slot_15.5",
+      "time": 15.5
+    },
+    {
+      "id": "slot_16",
+      "time": 16
+    },
+    {
+      "id": "slot_16.5",
+      "time": 16.5
+    },
+    {
+      "id": "slot_17",
+      "time": 17
+    },
+    {
+      "id": "slot_17.5",
+      "time": 17.5
+    },
+    {
+      "id": "slot_18",
+      "time": 18
+    },
+    {
+      "id": "slot_18.5",
+      "time": 18.5
+    },
+    {
+      "id": "slot_19",
+      "time": 19
+    }
+  ]
+}
