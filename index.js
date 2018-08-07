@@ -43,7 +43,7 @@ app.get('/timeslots', (req, res) => {
 //returns Bookings of given date
 // date should be DD-mm-YYYY Ex: 01-12-2018 (01 December 2018)
 app.get('/bookings/:date', (req, res) => {
-    let date = req.param.date;
+    let date = req.params.date;
     let bookings = bookingsDB.get('bookings').value();
     if (bookings[date]){
         res.send(bookings[date]);
@@ -67,7 +67,7 @@ app.get('/bookings/:date', (req, res) => {
 app.post('/bookings/:date', doReservation);
 
 function doReservation(req, res){
-    let bookingDate = req.param.date;
+    let bookingDate = req.params.date;
     let bookingData = req.body;
     let _dateBookings = {};
     let isConflictsPresent = false;
