@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
 });
 
@@ -45,9 +46,9 @@ app.get('/timeslots', (req, res) => {
 app.get('/bookings/:date', (req, res) => {
     let date = req.params.date;
     let bookings = bookingsDB.get('bookings').value();
-    if (bookings[date]){
+    if (bookings[date]) {
         res.send(bookings[date]);
-    }else{
+    } else {
         res.status(201);
     }
 });
@@ -64,36 +65,63 @@ app.get('/bookings/:date', (req, res) => {
     }
 } */
 
+app.delete('/bookings/:date/:room/:slot', deleteBookedReservation);
+
+function deleteBookedReservation(req, res) {
+    let deleteDate = req.params.date;
+    let deleteRoom = req.params.room;
+    let deleteSlot = req.params.slot;
+    //let bookingData = req.body
+    if (deleteDate && deleteRoom && deleteSlot) {
+        if (bookingsDB.has(`bookings.${deleteDate}`).value()) {
+            _dateBookings = bookingsDB.get(`bookings.${deleteDate}`).value();
+        }
+        if (_dateBookings && _dateBookings[deleteRoom] && _dateBookings[deleteRoom][deleteSlot]) {
+            delete _dateBookings[deleteRoom][deleteSlot]
+            bookingsDB.set(`bookings.${deleteDate}`, _dateBookings).write();
+            res.send(_dateBookings);
+        } else {
+            res.status(400).send({
+                message: 'Unbale to delete'
+            });
+        }
+    } else {
+        res.status(400).send({
+            message: 'Delete unsuccessful. Please check your data.'
+        });
+    }
+}
+
 app.post('/bookings/:date', doReservation);
 
-function doReservation(req, res){
+function doReservation(req, res) {
     let bookingDate = req.params.date;
     let bookingData = req.body;
     let _dateBookings = {};
     let isConflictsPresent = false;
-    if(bookingData){
-        if(bookingsDB.has(`bookings.${bookingDate}`).value()){
+    if (bookingData) {
+        if (bookingsDB.has(`bookings.${bookingDate}`).value()) {
             _dateBookings = bookingsDB.get(`bookings.${bookingDate}`).value();
         }
         Object.keys(bookingData).forEach((room) => {
             _dateBookings[room] = _dateBookings[room] || {};
             Object.keys(bookingData[room]).forEach((slot) => {
-                if(!_dateBookings[room][slot]){
+                if (!_dateBookings[room][slot]) {
                     _dateBookings[room][slot] = bookingData[room][slot];
-                }else{
+                } else {
                     isConflictsPresent = true;
                 }
             });
         });
-        if(!isConflictsPresent){
+        if (!isConflictsPresent) {
             bookingsDB.set(`bookings.${bookingDate}`, _dateBookings).write();
             res.send(_dateBookings);
-        }else{
+        } else {
             res.status(400).send({
                 message: 'Code_room_booking_conflict'
             });
         }
-    }else{
+    } else {
         res.status(400).send({
             message: 'Code_room_booking_data_required'
         });
@@ -102,8 +130,8 @@ function doReservation(req, res){
 
 function createTimeSlots() {
 
-    let startTime = 8.5;
-    let endTime = 19; // 7PM using 24-hour format
+    let startTime = 0.5;
+    let endTime = 24.0; // 7PM using 24-hour format
     let slots = [];
     // Creating a slot for every 30 mins
     for (let slotTime = startTime; slotTime <= endTime; slotTime = slotTime + 0.5) {
