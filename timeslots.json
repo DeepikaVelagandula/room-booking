@@ -1,0 +1,196 @@
+{
+  "slots": [
+    {
+      "id": "slot_0.5",
+      "time": 0.5
+    },
+    {
+      "id": "slot_1",
+      "time": 1
+    },
+    {
+      "id": "slot_1.5",
+      "time": 1.5
+    },
+    {
+      "id": "slot_2",
+      "time": 2
+    },
+    {
+      "id": "slot_2.5",
+      "time": 2.5
+    },
+    {
+      "id": "slot_3",
+      "time": 3
+    },
+    {
+      "id": "slot_3.5",
+      "time": 3.5
+    },
+    {
+      "id": "slot_4",
+      "time": 4
+    },
+    {
+      "id": "slot_4.5",
+      "time": 4.5
+    },
+    {
+      "id": "slot_5",
+      "time": 5
+    },
+    {
+      "id": "slot_5.5",
+      "time": 5.5
+    },
+    {
+      "id": "slot_6",
+      "time": 6
+    },
+    {
+      "id": "slot_6.5",
+      "time": 6.5
+    },
+    {
+      "id": "slot_7",
+      "time": 7
+    },
+    {
+      "id": "slot_7.5",
+      "time": 7.5
+    },
+    {
+      "id": "slot_8",
+      "time": 8
+    },
+    {
+      "id": "slot_8.5",
+      "time": 8.5
+    },
+    {
+      "id": "slot_9",
+      "time": 9
+    },
+    {
+      "id": "slot_9.5",
+      "time": 9.5
+    },
+    {
+      "id": "slot_10",
+      "time": 10
+    },
+    {
+      "id": "slot_10.5",
+      "time": 10.5
+    },
+    {
+      "id": "slot_11",
+      "time": 11
+    },
+    {
+      "id": "slot_11.5",
+      "time": 11.5
+    },
+    {
+      "id": "slot_12",
+      "time": 12
+    },
+    {
+      "id": "slot_12.5",
+      "time": 12.5
+    },
+    {
+      "id": "slot_13",
+      "time": 13
+    },
+    {
+      "id": "slot_13.5",
+      "time": 13.5
+    },
+    {
+      "id": "slot_14",
+      "time": 14
+    },
+    {
+      "id": "slot_14.5",
+      "time": 14.5
+    },
+    {
+      "id": "slot_15",
+      "time": 15
+    },
+    {
+      "id": "slot_15.5",
+      "time": 15.5
+    },
+    {
+      "id": "slot_16",
+      "time": 16
+    },
+    {
+      "id": "slot_16.5",
+      "time": 16.5
+    },
+    {
+      "id": "slot_17",
+      "time": 17
+    },
+    {
+      "id": "slot_17.5",
+      "time": 17.5
+    },
+    {
+      "id": "slot_18",
+      "time": 18
+    },
+    {
+      "id": "slot_18.5",
+      "time": 18.5
+    },
+    {
+      "id": "slot_19",
+      "time": 19
+    },
+    {
+      "id": "slot_19.5",
+      "time": 19.5
+    },
+    {
+      "id": "slot_20",
+      "time": 20
+    },
+    {
+      "id": "slot_20.5",
+      "time": 20.5
+    },
+    {
+      "id": "slot_21",
+      "time": 21
+    },
+    {
+      "id": "slot_21.5",
+      "time": 21.5
+    },
+    {
+      "id": "slot_22",
+      "time": 22
+    },
+    {
+      "id": "slot_22.5",
+      "time": 22.5
+    },
+    {
+      "id": "slot_23",
+      "time": 23
+    },
+    {
+      "id": "slot_23.5",
+      "time": 23.5
+    },
+    {
+      "id": "slot_24",
+      "time": 24
+    }
+  ]
+}

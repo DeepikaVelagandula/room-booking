@@ -1,0 +1,38 @@
+{
+  "bookings": {
+    "13-08-2018": {
+      "room_1": {
+        "slot_2": {
+          "teamName": "dfgdf",
+          "meetingName": "dfgfd",
+          "contactPerson": "dfgfd",
+          "phone": "1478523698"
+        }
+      },
+      "room_0": {
+        "slot_2.5": {
+          "teamName": "fsd",
+          "meetingName": "sdfsd",
+          "contactPerson": "sdfsd",
+          "phone": "1236547896"
+        }
+      },
+      "room_3": {
+        "slot_3": {
+          "teamName": "sdf",
+          "meetingName": "sdf",
+          "contactPerson": "sdfs",
+          "phone": "1478523698"
+        }
+      },
+      "room_2": {
+        "slot_2.5": {
+          "teamName": "sdf",
+          "meetingName": "sdf",
+          "contactPerson": "sdfs",
+          "phone": "1478523698"
+        }
+      }
+    }
+  }
+}
