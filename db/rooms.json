@@ -11,6 +11,22 @@
             "name": "Orchids",
             "capacity": 4,
             "video": true
+        },{
+            "id": "room_2",
+            "name": "Duffodil",
+            "capacity": 4,
+            "video": true
+        },{
+            "id": "room_3",
+            "name": "Marigold",
+            "capacity": 4,
+            "video": true
+        },{
+            "id": "room_4",
+            "name": "Mangnblia",
+            "capacity": 5,
+            "video": true
         }
+
     ]
 }
