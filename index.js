@@ -1,9 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var session = require('express-session');
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 
+//user login
+const userDetaisAdapter = new FileSync('./db/users.json');
+const userDetailsDB = low(userDetaisAdapter);
 // TimeSlots DB
 const timeSlotsAdapter = new FileSync('./db/timeslots.json');
 const timeSlotsDB = low(timeSlotsAdapter);
@@ -19,8 +23,7 @@ const bookingsDB = low(bookingsAdapter);
 
 bookingsDB.defaults({ bookings: {} }).write();
 
-timeSlotsDB.defaults({ slots: [] })
-    .write();
+timeSlotsDB.defaults({ slots: [] }).write();
 
 const app = express();
 app.use(bodyParser.json());
@@ -30,6 +33,70 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
 });
+app.use(express.static('FE_CODE'));
+//------------------------------------------------------
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1 * 60 * 1000 }
+}));
+
+var token = function(req,res,next){
+    if(req.session){
+        return next();
+    } else {
+        return res.sendStatus(401);
+    }
+}
+
+app.post('/signin', function(req, res){
+    let userToken = null;
+    let users = userDetailsDB.getState()
+    if(req.body && req.body.userName && req.body.password){
+        for(let user of users){
+            if(user.name == req.body.userName && user.password == req.body.password){
+                userToken = user.id
+            }
+        }
+        if(userToken){
+            token = userToken;
+            res.send({
+                id: userToken
+            });
+            
+        }else{
+            res.status(404).send({
+                error: 'not  a valid user'
+            });
+        }
+    }else{
+        res.status(400).send({
+            error: 'Bad request'
+        });
+    }
+});
+
+app.get('/session', function(req, res){
+     if(token){
+        res.send({
+            id: token
+        });
+     }else{
+        res.status(400).send({
+            error: 'Bad request'
+        });
+     }
+ });
+
+ app.delete('/session', function(req, res){
+    token = null;
+        res.sendStatus(201);
+});
+
+//--------------------------------
+
 
 // returns available rooms.
 app.get('/rooms', (req, res) => {
@@ -91,6 +158,33 @@ function deleteBookedReservation(req, res) {
         });
     }
 }
+
+/*---Delete Multiple slots
+app.post('/bookings/:date', deleteMultipleSlots);
+
+function deleteMultipleSlots(req, res) {
+    let deleteMultipleSlotDate = req.params.date;
+    let deleteMultipleSlotData = req.body;
+    if (deleteMultipleSlotData) {
+        if (bookingsDB.has(`bookings.${deleteMultipleSlotDate}`).value()) {
+            _dateBookings = bookingsDB.get(`bookings.${deleteMultipleSlotDate}`).value();
+        }
+        Object.keys(deleteMultipleSlotData).forEach((room) => {
+            Object.keys(deleteMultipleSlotData[room]).forEach((slot) => {
+                if (_dateBookings[room][slot]) {
+                    delete _dateBookings[room][slot];
+                }
+            });
+        });
+        bookingsDB.set(`bookings.${bookingDate}`, _dateBookings).write();
+        res.send(_dateBookings);   
+    } else {
+        res.status(400).send({
+            message: 'Code_room_deleting_data_required'
+        });
+    }
+}
+...*/
 
 app.post('/bookings/:date', doReservation);
 
