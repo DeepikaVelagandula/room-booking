@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-var session = require('express-session');
+const session = require('express-session');
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -8,6 +8,7 @@ const FileSync = require('lowdb/adapters/FileSync');
 //user login
 const userDetaisAdapter = new FileSync('./db/users.json');
 const userDetailsDB = low(userDetaisAdapter);
+
 // TimeSlots DB
 const timeSlotsAdapter = new FileSync('./db/timeslots.json');
 const timeSlotsDB = low(timeSlotsAdapter);
@@ -21,9 +22,16 @@ const roomsDB = low(roomsAdpter);
 const bookingsAdapter = new FileSync('./db/bookings.json');
 const bookingsDB = low(bookingsAdapter);
 
+
+// Setting Defaults
+
 bookingsDB.defaults({ bookings: {} }).write();
 
 timeSlotsDB.defaults({ slots: [] }).write();
+
+userDetailsDB.defaults({ users: [] }).write();
+
+roomsDB.defaults({ rooms: [] }).write();
 
 const app = express();
 app.use(bodyParser.json());
@@ -33,7 +41,8 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
 });
-app.use(express.static('FE_CODE'));
+
+app.use('/', express.static('FE_CODE'));
 //------------------------------------------------------
 
 app.use(session({
@@ -43,17 +52,10 @@ app.use(session({
     cookie: { maxAge: 1 * 60 * 1000 }
 }));
 
-var token = function(req,res,next){
-    if(req.session){
-        return next();
-    } else {
-        return res.sendStatus(401);
-    }
-}
-
 app.post('/signin', function(req, res){
     let userToken = null;
-    let users = userDetailsDB.getState()
+    let users = userDetailsDB.get('users').value();
+    
     if(req.body && req.body.userName && req.body.password){
         for(let user of users){
             if(user.name == req.body.userName && user.password == req.body.password){
@@ -61,11 +63,10 @@ app.post('/signin', function(req, res){
             }
         }
         if(userToken){
-            token = userToken;
+            req.session.userId = userToken;
             res.send({
                 id: userToken
             });
-            
         }else{
             res.status(404).send({
                 error: 'not  a valid user'
@@ -79,9 +80,18 @@ app.post('/signin', function(req, res){
 });
 
 app.get('/session', function(req, res){
-     if(token){
+    let sessionUserId = req.session.userId;
+    let loggedInUser = null;
+    if (sessionUserId){
+        let users = userDetailsDB.get('users').value();
+        for (let user of users) {
+            if (user.id === sessionUserId) {
+                loggedInUser = user
+            }
+        }
         res.send({
-            id: token
+            name: loggedInUser.name,
+            admin: loggedInUser.admin
         });
      }else{
         res.status(400).send({
@@ -91,8 +101,9 @@ app.get('/session', function(req, res){
  });
 
  app.delete('/session', function(req, res){
-    token = null;
-        res.sendStatus(201);
+    req.session.userId = null;
+    req.session.destroy();
+    res.sendStatus(201);
 });
 
 //--------------------------------
@@ -241,5 +252,5 @@ function createTimeSlots() {
 createTimeSlots();
 
 app.listen(3001, () => {
-    console.log("listening...");
+    console.log("listening... on 3001");
 });

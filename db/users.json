@@ -1,9 +1,16 @@
-[{
-    "name": "Admin",
-    "password": "Admin@123",
-    "id": "1a3r5gdfg"
-}, {
-    "name": "user",
-    "password": "User@123",
-    "id": "56hfghjtu87"
-}]
+{
+  "users": [
+    {
+      "name": "Admin",
+      "password": "Admin@123",
+      "id": "1a3r5gdfg",
+      "admin": true
+    },
+    {
+      "name": "user",
+      "password": "User@123",
+      "id": "56hfghjtu87",
+      "admin": false
+    }
+  ]
+}

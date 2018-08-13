@@ -8,9 +8,7 @@ angular.module("RoomBookingModule", [
     .controller("roomBookingController", roomBookingController);
 
 function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter, $state) {
-    // if(!$rootScope.islogin){
-    //     $state.go('login');
-    // }
+    
     var self = this;  
     self.selectedDates = [];  
 
@@ -162,6 +160,13 @@ function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter,
     self.clearSelection = clearSelection;
     self.doReservation = doReservation;
     self.deleteRoomReservation = deleteRoomReservation;
-    init();
+    
+    function checkUserSession() {
+        httpServicesData.getSession().then(init, function () { 
+            $state.go('login');
+        });
+    }
 
+    checkUserSession();
+    
 }
