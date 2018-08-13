@@ -1,0 +1,101 @@
+.login-form{
+width: 340px;
+margin: 50px auto;
+}
+.login-form form{
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form h2{
+    margin-top: 0;
+}
+.navbar{
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+.sidebar{
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-bottom: 30px;
+}
+.padding-zero{
+    padding:0px;
+}
+
+td, th {
+    border: 2px solid white !important;
+    background: rgba(0, 0, 0, .05);
+}
+
+th, .th {
+    background: rgba(0, 0, 0, .15);
+}
+
+td.selected{
+    background: rgb(11, 172, 11);
+}
+
+
+td.booked{
+    background: rgb(255, 37, 37);
+}
+
+.sticky{
+   margin-left: 34%;
+}
+ul {
+    list-style-type: none;
+  }
+  ol, ul {
+    margin-left: -30px;
+  }
+
+ .table-fixed {
+    width: 100%;
+    background-color: #f3f3f3;
+  }
+  .table-fixed tbody {
+    height: 200px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  /* .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+  }
+  .table-fixed tbody td {
+    float: left;
+  }
+  .table-fixed thead tr th {
+    float: left;
+    background-color: #f39c12;
+    border-color: #e67e22;
+  } */
+  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+      height:40px;
+  }
+  .table-fixed thead th, .table-fixed tbody td {
+    width: 118px;
+    display: inline-block;
+}
+.table-fixed tbody {
+    height: 482px;
+    overflow-y: auto;
+    width: 100%;
+    display: block;
+}
+input.trashMakeUp{
+    display:none;
+}
+
+button.glyphicon.glyphicon-trash {
+    display: none;
+}
+.booked:hover button.glyphicon.glyphicon-trash {
+    display: block;
+    background-color: red;
+    border: none;
+    color: white;
+}
+
+  

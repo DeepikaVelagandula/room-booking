@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Meeting Details</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div>
+        <form class="form-horizontal" name="meeting" ng-submit="storeMeetingData()">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="team-name">Team name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="team-name" placeholder="Enter team name" name="team_name" required ng-model="meetingDetails.teamName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="meeting-name">Meeting Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="meeting-name" placeholder="Enter meeting name" name="meeting_name" data-ng-model="meetingDetails.meetingName" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="contact-person">Contact Person:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="contact-person" placeholder="Enter contact person name" name="contact_person" data-ng-model="meetingDetails.contactPerson" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="phone">Phone Number:</label>
+                <div class="col-sm-10">
+                    <input type="tel" class="form-control" id="phone" placeholder="9999999999" name="phone"
+                    data-ng-model="meetingDetails.phone" pattern="^\d{10}$" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
+</div>
