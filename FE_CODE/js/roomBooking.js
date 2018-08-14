@@ -7,10 +7,10 @@ angular.module("RoomBookingModule", [
 ])
     .controller("roomBookingController", roomBookingController);
 
-function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter, $state, $rootScope) {
+function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter, $state) {
     
     var self = this;  
-    self.isAdmin = $rootScope.isAdmin;
+    //self.isAdmin = $rootScope.isAdmin;
     //console.log(self.isAdmin);
 
     function deleteRoomReservation(room, slot){       
@@ -131,7 +131,8 @@ function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter,
     }
 
 
-    function init() {
+    function init(res) {
+        self.isAdmin = res.data.admin;
         self.datePickerOpions = {
             minDate: new Date(),
             maxDate: new Date(new Date().setMonth(new Date().getMonth() + 1)),
