@@ -1,32 +1,58 @@
 {
-    "rooms":[
-        {
-            "id": "room_0",
-            "name": "Tulip",
-            "capacity": 8,
-            "video": true
-        },
-        {
-            "id": "room_1",
-            "name": "Orchids",
-            "capacity": 4,
-            "video": true
-        },{
-            "id": "room_2",
-            "name": "Duffodil",
-            "capacity": 4,
-            "video": true
-        },{
-            "id": "room_3",
-            "name": "Marigold",
-            "capacity": 4,
-            "video": true
-        },{
-            "id": "room_4",
-            "name": "Mangnblia",
-            "capacity": 5,
-            "video": true
-        }
-
-    ]
+  "rooms": [
+    {
+      "id": "room_0",
+      "name": "ROSE",
+      "capacity": 8,
+      "video": true
+    },
+    {
+      "id": "room_1",
+      "name": "TULIP",
+      "capacity": 8,
+      "video": true
+    },
+    {
+      "id": "room_2",
+      "name": "IRIS",
+      "capacity": 4,
+      "video": true
+    },
+    {
+      "id": "room_3",
+      "name": "MARIGOLD",
+      "capacity": 4,
+      "video": true
+    },
+    {
+      "id": "room_4",
+      "name": "ORCHIDS",
+      "capacity": 3,
+      "video": true
+    },
+    {
+      "id": "room_5",
+      "name": "JASMINE",
+      "capacity": 5,
+      "video": true
+    },
+    {
+      "id": "room_6",
+      "name": "LOTUS",
+      "capacity": 5,
+      "video": true
+    },
+    {
+      "id": "room_7",
+      "name": "DAFFODILS",
+      "capacity": 5,
+      "video": false
+    },
+    {
+      "id": "room_8",
+      "name": "MANGNOLIA",
+      "capacity": 5,
+      "video": false
+    }
+  ]
 }
