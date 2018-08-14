@@ -43,13 +43,12 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', express.static('FE_CODE'));
-//------------------------------------------------------
 
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 1 * 60 * 1000 }
+    cookie: { maxAge: 5 * 60 * 1000 }
 }));
 
 app.post('/signin', function(req, res){
@@ -60,12 +59,16 @@ app.post('/signin', function(req, res){
         for(let user of users){
             if(user.name == req.body.userName && user.password == req.body.password){
                 userToken = user.id
+                loggedInUser = user
             }
         }
         if(userToken){
             req.session.userId = userToken;
             res.send({
-                id: userToken
+                id: userToken,
+                name: loggedInUser.name,
+                admin: loggedInUser.admin
+
             });
         }else{
             res.status(404).send({
@@ -105,8 +108,6 @@ app.get('/session', function(req, res){
     req.session.destroy();
     res.sendStatus(201);
 });
-
-//--------------------------------
 
 
 // returns available rooms.
@@ -234,7 +235,6 @@ function doReservation(req, res) {
 }
 
 function createTimeSlots() {
-
     let startTime = 0.5;
     let endTime = 24.0; // 7PM using 24-hour format
     let slots = [];
@@ -245,7 +245,6 @@ function createTimeSlots() {
         slot.time = slotTime;
         slots.push(slot);
     }
-
     timeSlotsDB.set('slots', slots).write();
 }
 
