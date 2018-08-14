@@ -17,7 +17,7 @@
     <div class="col-sm-4">
         <div>
             <div uib-datepicker ng-model="roomBook.selectedDate" min-date="roomBook.minDate" show-weeks="true" class="well well-sm" datepicker-options="roomBook.datePickerOpions"
-                date-disabled="roomBook.disabled(date, mode)" multi-select = "roomBook.selectedDates"></div>
+                date-disabled="roomBook.disabled(date, mode)"></div>
         </div>
         <div class="sticky">
             <button type="button" class="btn btn-primary" ng-click="roomBook.doReservation()">Book</button>
@@ -28,7 +28,7 @@
         <table class="table table-fixed">
             <thead>
                 <tr>
-                    <th width="10%">Room/Time</th>
+                    <th>Room/Time</th>
                     <th ng-repeat="room in roomBook.roomsObj.rooms" popover-placement="{{roomBook.roomPopOver.placement}}" popover-title="{{roomBook.roomPopOver.title}}"
                         popover-trigger="'mouseenter'" popover-append-to-body="true" popover-enable="room.name? true : false"
                         uib-popover-template="roomBook.roomPopOver.templateUrl">{{room.name}}</th>
@@ -41,7 +41,7 @@
                         popover-title="{{roomBook.popover.title}}" popover-trigger="'mouseenter'" popover-append-to-body="true"
                         popover-enable="roomBook.bookedMeetings[room.id][slot.id]? true : false" uib-popover-template="roomBook.popover.templateUrl"
                         ng-class="{'selected': roomBook.reservationData[room.id][slot.id], 'booked': roomBook.bookedMeetings[room.id][slot.id]}">
-                    <button type="button" class="glyphicon glyphicon-trash" 
+                    <button type="button" class="glyphicon glyphicon-trash" ng-if="roomBook.isAdmin"
                                         ng-click="roomBook.deleteRoomReservation(room.id, slot.id); $event.stopPropagation();" 
                                         ng-class="{'button.glyphicon.glyphicon-trash': !roomBook.bookedMeetings[room.id][slot.id]}" > 
                     </button>

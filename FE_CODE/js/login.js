@@ -1,6 +1,6 @@
 
 angular.module("loginModule",['serviceModule']).controller("loginController", loginController);
-function loginController(httpServicesData, $state){
+function loginController(httpServicesData, $state, $rootScope){
     var self = this;
     self.userName = "";
     self.password = "";
@@ -12,7 +12,8 @@ function loginController(httpServicesData, $state){
         httpServicesData.loginDetils(self.userName, self.password).then(successcallback, failurecallback)       
     }
     
-    function successcallback(){  
+    function successcallback(res){
+        $rootScope.isAdmin = res.data.admin;
         $state.go('roomBookingApp');  
     }
 

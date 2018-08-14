@@ -40,50 +40,36 @@ td.selected{
 td.booked{
     background: rgb(255, 37, 37);
 }
-
 .sticky{
    margin-left: 34%;
 }
 ul {
     list-style-type: none;
-  }
-  ol, ul {
+}
+ol, ul {
     margin-left: -30px;
-  }
-
- .table-fixed {
+}
+.table-fixed {
     width: 100%;
     background-color: #f3f3f3;
-  }
-  .table-fixed tbody {
+}
+.table-fixed tbody {
     height: 200px;
     overflow-y: auto;
     width: 100%;
-  }
-  /* .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-    display: block;
-  }
-  .table-fixed tbody td {
-    float: left;
-  }
-  .table-fixed thead tr th {
-    float: left;
-    background-color: #f39c12;
-    border-color: #e67e22;
-  } */
-  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-      height:40px;
-  }
-  .table-fixed thead th, .table-fixed tbody td {
-    width: 118px;
-    display: inline-block;
 }
-.table-fixed tbody {
-    height: 482px;
-    overflow-y: auto;
-    width: 100%;
-    display: block;
+.table-fixed{
+    table-layout: fixed; 
 }
+.table-fixed td, th{
+    width:100px;
+}
+@media (min-width: 768px){
+    .col-sm-8 {
+        height: 549px;
+    }
+}
+
 input.trashMakeUp{
     display:none;
 }
@@ -98,4 +84,31 @@ button.glyphicon.glyphicon-trash {
     color: white;
 }
 
+
+
+  /* .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+  }
+  .table-fixed tbody td {
+    float: left;
+  }
+  .table-fixed thead tr th {
+    float: left;
+    background-color: #f39c12;
+    border-color: #e67e22;
+  } */
+  /* .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+      height:40px;
+  }
+  .table-fixed thead th, .table-fixed tbody td {
+    width: 118px;
+    display: inline-block;
+}
+.table-fixed tbody {
+    height: 482px;
+    overflow-y: auto;
+    overflow-x:auto;
+    width: 100%;
+    display: block;
+} */
   

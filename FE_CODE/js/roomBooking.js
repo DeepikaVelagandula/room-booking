@@ -7,10 +7,11 @@ angular.module("RoomBookingModule", [
 ])
     .controller("roomBookingController", roomBookingController);
 
-function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter, $state) {
+function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter, $state, $rootScope) {
     
     var self = this;  
-    self.selectedDates = [];  
+    self.isAdmin = $rootScope.isAdmin;
+    //console.log(self.isAdmin);
 
     function deleteRoomReservation(room, slot){       
         var confirmationMessage = confirm("Do you want to delete the booking slot.");
