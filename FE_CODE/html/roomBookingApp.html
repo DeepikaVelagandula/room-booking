@@ -40,7 +40,7 @@
                     <td ng-repeat="room in roomBook.roomsObj.rooms" ng-click="roomBook.bookSlot(room, slot)" popover-placement="{{roomBook.popover.placement}}"
                         popover-title="{{roomBook.popover.title}}" popover-trigger="'mouseenter'" popover-append-to-body="true"
                         popover-enable="roomBook.bookedMeetings[room.id][slot.id]? true : false" uib-popover-template="roomBook.popover.templateUrl"
-                        ng-class="{'selected': roomBook.reservationData[room.id][slot.id], 'selected':roomBook.isAdmin, 'booked': roomBook.bookedMeetings[room.id][slot.id]}">
+                        ng-class="{'selected': roomBook.reservationData[room.id][slot.id], 'booked': roomBook.bookedMeetings[room.id][slot.id]}">
                     <button type="button" class="glyphicon glyphicon-trash" ng-if="roomBook.isAdmin"
                                         ng-click="roomBook.deleteRoomReservation(room.id, slot.id); $event.stopPropagation();" 
                                         ng-class="{'button.glyphicon.glyphicon-trash': !roomBook.bookedMeetings[room.id][slot.id]}" > 
