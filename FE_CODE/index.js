@@ -7,7 +7,7 @@ angular.module("myapp", ['ui.router','loginModule','RoomBookingModule']).config(
         })
         .state('roomBookingApp', {
             url: '/roomBookingApp',
-            templateUrl: './../html/roomBookingApp.html'
+            templateUrl: './html/roomBookingApp.html'
         });            
 });
 

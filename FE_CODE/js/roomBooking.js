@@ -4,6 +4,7 @@ angular.module("RoomBookingModule", [
     'serviceModule',
     'timeChangeFilter',
     'meetingDetailsModule',
+    'gm.datepickerMultiSelect'
 ])
     .controller("roomBookingController", roomBookingController);
 
@@ -64,7 +65,16 @@ function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter,
         self.reservationData = {};
     }
 
-    function doReservation() {
+    function doReservation(dates) {
+        var formattedDates = dates;
+        self.selectedDates = [];
+        if(formattedDates){
+            angular.forEach(formattedDates, function(selectedDate, key){
+                var formattedDates = $filter('date')(selectedDate, 'dd-MM-yyyy');
+                self.selectedDates.push(formattedDates); 
+            })
+        }
+
         if (Object.keys(self.reservationData).length === 0) {
             alert('Please select a time slot to do booking');
             return;
@@ -89,7 +99,7 @@ function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter,
                 }
             }
            // console.log(self.reservationData)
-            httpServicesData.requestingRoomBookingService(self.formattedDate, self.reservationData).then(successRoomBookingObj, errorBookingSlots);
+            httpServicesData.requestingRoomBookingService(self.selectedDates, self.reservationData).then(successRoomBookingObj, errorBookingSlots);
 
         }, function () {
             //alert('Meeting details are required to do booking');
@@ -121,6 +131,18 @@ function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter,
             }
         } 
     });
+
+    function formattongMultipleDates(dates){
+        var formattedDates = dates;
+        self.selectedDates = [];
+        if(formattedDates){
+            angular.forEach(formattedDates, function(selectedDate, key){
+                var formattedDates = $filter('date')(selectedDate, 'dd-MM-yyyy');
+                self.selectedDates.push(formattedDates) 
+            })
+        }
+        return self.selectedDates;
+    }
     self.logout = function(){
         httpServicesData.deleteSession().then(successfulLogOut,function(){
             console.log("log out not working")
@@ -155,13 +177,15 @@ function roomBookingController(httpServicesData, $q, $uibModal, $scope, $filter,
     self.roomsObj = [];
     self.reservationData = {}; // Current bookings from front end
     self.bookedMeetings = {}; // Already booked rooms of selected date
-    self.selectedDate = new Date(); // Date Object from Calander
+    //self.selectedDate = new Date(); // Date Object from Calander
     self.formattedDate = null;
     self.getRoomAvailability = getRoomAvailability;
     self.bookSlot = bookSlot;
     self.clearSelection = clearSelection;
     self.doReservation = doReservation;
     self.deleteRoomReservation = deleteRoomReservation;
+    self.formattongMultipleDates = formattongMultipleDates;
+    self.selectedDates = []; //multiple date selector
     
     function checkUserSession() {
         httpServicesData.getSession().then(init, function () { 

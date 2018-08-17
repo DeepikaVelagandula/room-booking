@@ -32,11 +32,14 @@ function httpServicesData($http) {
         return $http.get('http://localhost:3001/bookings/'+date)
     }
     
-    function requestingRoomBookingService(date,bookingObj){
+    function requestingRoomBookingService(dates,bookingObj){
         return $http({
-            url: 'http://localhost:3001/bookings/'+date,
+            url: 'http://localhost:3001/bookings/multidate',
             method: "POST",
-            data: bookingObj
+            data: {
+                dates:dates,
+                bookingObj: bookingObj
+            }
         })
     }
 

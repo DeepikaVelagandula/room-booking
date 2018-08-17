@@ -1,3 +1,14 @@
+btn btn-default btn-sm btn-info active {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+btn btn-default btn-sm {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
 .login-form{
 width: 340px;
 margin: 50px auto;
@@ -49,10 +60,7 @@ ul {
 ol, ul {
     margin-left: -30px;
 }
-.table-fixed {
-    width: 100%;
-    background-color: #f3f3f3;
-}
+
 .table-fixed tbody {
     height: 200px;
     overflow-y: auto;
@@ -83,6 +91,7 @@ button.glyphicon.glyphicon-trash {
     border: none;
     color: white;
 }
+
 
 
 

@@ -2,8 +2,8 @@
 angular.module("loginModule",['serviceModule']).controller("loginController", loginController);
 function loginController(httpServicesData, $state){
     var self = this;
-    self.userName = "";
-    self.password = "";
+    self.userName = "Admin";
+    self.password = "Admin@123";
     function init(){
         httpServicesData.getSession().then(successcallback, function(){});
     }

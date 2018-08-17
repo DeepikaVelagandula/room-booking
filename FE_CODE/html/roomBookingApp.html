@@ -15,12 +15,13 @@
         </div>
     </nav>
     <div class="col-sm-4">
-        <div>
+        <!-- <div>
             <div uib-datepicker ng-model="roomBook.selectedDate" min-date="roomBook.minDate" show-weeks="true" class="well well-sm" datepicker-options="roomBook.datePickerOpions"
                 date-disabled="roomBook.disabled(date, mode)"></div>
-        </div>
+        </div> -->
+        <uib-datepicker ng-model='roomBook.selectedDate' multi-select='roomBook.selectedDates' template-url='./MultidatePicker/multi-datepicker.tpl.html' show-weeks="true" class="well well-sm" datepicker-options="roomBook.datePickerOpions"></uib-datepicker>
         <div class="sticky">
-            <button type="button" ng-if="roomBook.isAdmin" class="btn btn-primary" ng-click="roomBook.doReservation()">Book</button>
+            <button type="button" ng-if="roomBook.isAdmin" class="btn btn-primary" ng-click="roomBook.doReservation(roomBook.selectedDates)">Book</button>
             <button type="button" ng-if="roomBook.isAdmin" class="btn btn-primary" ng-click="roomBook.clearSelection()">Clear</button>
         </div>
     </div>
