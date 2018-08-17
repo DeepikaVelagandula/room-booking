@@ -198,16 +198,18 @@ function deleteMultipleSlots(req, res) {
 }
 ...*/
 
-app.post('/bookings/:date', doReservation);
+app.post('/bookings/multidate', doReservation);
 
 function doReservation(req, res) {
-    let bookingDate = req.params.date;
-    let bookingData = req.body;
+    let bookingDates = req.body.dates;
+    let bookingData = req.body.bookingObj;
     let _dateBookings = {};
     let isConflictsPresent = false;
     if (bookingData) {
-        if (bookingsDB.has(`bookings.${bookingDate}`).value()) {
-            _dateBookings = bookingsDB.get(`bookings.${bookingDate}`).value();
+        for(i=0;i<bookingDates.length;i++){
+            if (bookingsDB.has(`bookings.${bookingDates[i]}`).value()) {
+                _dateBookings = bookingsDB.get(`bookings.${bookingDates[i]}`).value();
+            }
         }
         Object.keys(bookingData).forEach((room) => {
             _dateBookings[room] = _dateBookings[room] || {};
@@ -220,8 +222,11 @@ function doReservation(req, res) {
             });
         });
         if (!isConflictsPresent) {
-            bookingsDB.set(`bookings.${bookingDate}`, _dateBookings).write();
+            for(i=0;i<bookingDates.length;i++){
+                bookingsDB.set(`bookings.${bookingDates[i]}`, _dateBookings).write();
+            }
             res.send(_dateBookings);
+            
         } else {
             res.status(400).send({
                 message: 'Code_room_booking_conflict'
