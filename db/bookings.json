@@ -1,27 +1,61 @@
 {
   "bookings": {
-    "14-08-2018": {
+    "17-08-2018": {
       "room_0": {
-        "slot_1.5": {
-          "teamName": "sdgfd",
-          "meetingName": "dfgdf",
-          "contactPerson": "dfgdf",
+        "slot_3": {
+          "teamName": "a",
+          "meetingName": "a",
+          "contactPerson": "a",
           "phone": "1478523698"
         }
-      },
+      }
+    },
+    "18-08-2018": {
+      "room_0": {
+        "slot_3": {
+          "teamName": "a",
+          "meetingName": "a",
+          "contactPerson": "a",
+          "phone": "1478523698"
+        }
+      }
+    },
+    "23-08-2018": {
       "room_1": {
-        "slot_2.5": {
-          "teamName": "sdgfd",
-          "meetingName": "dfgdf",
-          "contactPerson": "dfgdf",
+        "slot_2": {
+          "teamName": "dfgd",
+          "meetingName": "dfg",
+          "contactPerson": "dfg",
           "phone": "1478523698"
         }
-      },
-      "room_2": {
+      }
+    },
+    "30-08-2018": {
+      "room_1": {
         "slot_2": {
-          "teamName": "sdgfd",
-          "meetingName": "dfgdf",
-          "contactPerson": "dfgdf",
+          "teamName": "dfgd",
+          "meetingName": "dfg",
+          "contactPerson": "dfg",
+          "phone": "1478523698"
+        }
+      }
+    },
+    "06-09-2018": {
+      "room_1": {
+        "slot_2": {
+          "teamName": "dfgd",
+          "meetingName": "dfg",
+          "contactPerson": "dfg",
+          "phone": "1478523698"
+        }
+      }
+    },
+    "13-09-2018": {
+      "room_1": {
+        "slot_2": {
+          "teamName": "dfgd",
+          "meetingName": "dfg",
+          "contactPerson": "dfg",
           "phone": "1478523698"
         }
       }
