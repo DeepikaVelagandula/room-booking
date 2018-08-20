@@ -51,18 +51,18 @@ app.use(session({
     cookie: { maxAge: 5 * 60 * 1000 }
 }));
 
-app.post('/signin', function(req, res){
+app.post('/signin', function (req, res) {
     let userToken = null;
     let users = userDetailsDB.get('users').value();
-    
-    if(req.body && req.body.userName && req.body.password){
-        for(let user of users){
-            if(user.name == req.body.userName && user.password == req.body.password){
+
+    if (req.body && req.body.userName && req.body.password) {
+        for (let user of users) {
+            if (user.name == req.body.userName && user.password == req.body.password) {
                 userToken = user.id
                 loggedInUser = user
             }
         }
-        if(userToken){
+        if (userToken) {
             req.session.userId = userToken;
             res.send({
                 id: userToken,
@@ -70,22 +70,22 @@ app.post('/signin', function(req, res){
                 admin: loggedInUser.admin
 
             });
-        }else{
+        } else {
             res.status(404).send({
                 error: 'not  a valid user'
             });
         }
-    }else{
+    } else {
         res.status(400).send({
             error: 'Bad request'
         });
     }
 });
 
-app.get('/session', function(req, res){
+app.get('/session', function (req, res) {
     let sessionUserId = req.session.userId;
     let loggedInUser = null;
-    if (sessionUserId){
+    if (sessionUserId) {
         let users = userDetailsDB.get('users').value();
         for (let user of users) {
             if (user.id === sessionUserId) {
@@ -96,14 +96,14 @@ app.get('/session', function(req, res){
             name: loggedInUser.name,
             admin: loggedInUser.admin
         });
-     }else{
+    } else {
         res.status(400).send({
             error: 'Bad request'
         });
-     }
- });
+    }
+});
 
- app.delete('/session', function(req, res){
+app.delete('/session', function (req, res) {
     req.session.userId = null;
     req.session.destroy();
     res.sendStatus(201);
@@ -205,28 +205,29 @@ function doReservation(req, res) {
     let bookingData = req.body.bookingObj;
     let _dateBookings = {};
     let isConflictsPresent = false;
-    if (bookingData) {
-        for(i=0;i<bookingDates.length;i++){
-            if (bookingsDB.has(`bookings.${bookingDates[i]}`).value()) {
-                _dateBookings = bookingsDB.get(`bookings.${bookingDates[i]}`).value();
-            }
-        }
-        Object.keys(bookingData).forEach((room) => {
-            _dateBookings[room] = _dateBookings[room] || {};
-            Object.keys(bookingData[room]).forEach((slot) => {
-                if (!_dateBookings[room][slot]) {
-                    _dateBookings[room][slot] = bookingData[room][slot];
-                } else {
-                    isConflictsPresent = true;
-                }
+    if (bookingData && bookingDates) {
+        _dateBookings = bookingsDB.get(`bookings`).value();
+        for (let i = 0; i < bookingDates.length; i++) {
+            let currentDateBooking = _dateBookings[bookingDates[i]] || {};
+            Object.keys(bookingData).forEach((room) => {
+                currentDateBooking[room] = currentDateBooking[room] || {};
+                Object.keys(bookingData[room]).forEach((slot) => {
+                    if (!currentDateBooking[room][slot]) {
+                        currentDateBooking[room][slot] = bookingData[room][slot];
+                    } else {
+                        isConflictsPresent = true;
+                    }
+                });
             });
-        });
-        if (!isConflictsPresent) {
-            for(i=0;i<bookingDates.length;i++){
-                bookingsDB.set(`bookings.${bookingDates[i]}`, _dateBookings).write();
+            if(isConflictsPresent){
+                break;
             }
+            _dateBookings[bookingDates[i]] = currentDateBooking;
+        }
+        if (!isConflictsPresent) {
+            bookingsDB.set(`bookings`, _dateBookings).write();
             res.send(_dateBookings);
-            
+
         } else {
             res.status(400).send({
                 message: 'Code_room_booking_conflict'
